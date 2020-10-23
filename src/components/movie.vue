@@ -1,3 +1,5 @@
+
+
 <template>
 <div id="movie">
   <section id="searchContent">
@@ -26,10 +28,15 @@ export default {
       console.log(movie);
       this.$emit('movieInfo',movie);
 
+
     }
   }
 }
 </script>
 <style>
 
+
+.img-thumbnail .img{
+  border:10px solid black;
+width: 500px;}
 </style>

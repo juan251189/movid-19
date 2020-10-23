@@ -22,3 +22,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+refactor app :
+[]create a new component called movie grid and modify the existent component movie to only hold and pass data to movie grid.
