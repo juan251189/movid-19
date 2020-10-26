@@ -89,7 +89,7 @@ export default {
     },
     removeWatchLat(){
       const index =this.watchLater.map(function(item){
-        return item.id;
+        return item.imdbID;
       }).indexOf(this.currentMovie.imdbID);
     this.watchLater.splice(index,1);
       console.log("are you sure ");

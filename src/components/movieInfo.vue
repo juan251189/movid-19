@@ -18,8 +18,12 @@
           <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
         </p>
 
-        <i class="fas fa-plus-circle" @click="addWatchlater" v-if="!isinWatchlater"></i>
-        <i class="fas fa-minus-circle" @click="removeWatchlater" v-else></i>
+<div v-if="!isinWatchlater">
+          <i class="fas fa-plus-circle addicon" @click="addWatchlater" ></i>Add to favorites
+</div>
+<div v-else>
+          <i class="fas fa-minus-circle removeicon" @click="removeWatchlater" ></i>Remove from favorites
+</div>
 
 
       </div>
@@ -79,5 +83,20 @@ export default {
   border-radius: 20px;
   font-size: 2.5em;
   z-index: 1;
+}
+
+.removeicon{
+  position: relative;
+  top:2px;
+  font-size: 1.5em;
+  color:#d03200;
+  margin-right: 7px;
+}
+.addicon{
+  position: relative;
+  top:2px;
+  font-size: 1.5em;
+  color:#1a7001;
+  margin-right: 7px;
 }
 </style>
