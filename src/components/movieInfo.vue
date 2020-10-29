@@ -11,12 +11,18 @@
       <div class="col-12 col-sm-6" style="text-align:center;"><img :src="currentMovie.Poster" alt="" class="img" ></div>
       <div class="col-12 col-sm-6">
         <h1 class="display-4">{{currentMovie.Title}}</h1>
+        <div class="movie-details">
+          <p class="movie-year ">{{currentMovie.Year}} Released</p>
+          <span class="movie-type">{{currentMovie.Type}}</span>
+          <span class="movie-type">Type</span>
+        </div>
+
+
+        <h4>Plot Summary</h4>
         <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <p class="lead">
-          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-        </p>
+      
 
 <div v-if="!isinWatchlater">
           <i class="fas fa-plus-circle addicon" @click="addWatchlater" ></i>Add to favorites
@@ -77,6 +83,30 @@ export default {
   justify-content: flex-end;
 
 }
+.movieInfo h1{
+  font-size: 3.5rem;
+  font-weight: 700;
+  font-family: sans-serif,'monserrate';
+}
+.movie-type{
+  color:#a9b4a0;
+  border:1px solid #c2c2c2;
+  margin-right: 10px;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+.movie-details{
+  margin-bottom: 40px;
+}
+
+.movie-year{
+  color:#bad0cb;
+}
+.movie-type{
+  margin-left: 5px;
+
+}
 
 .removeInfo{
   position: absolute;
@@ -94,13 +124,14 @@ export default {
 .removeInfo:hover{
 
   animation: rotate 2s;
+  color:#d72c0e;
 }
 
 @keyframes rotate {
-  50%{transform: rotate(180deg);}
+
   100%{
     transform: rotate(180deg);
-    color: #d72c0e;}
+    transition:color 2s;}
 
 }
 .removeicon{
