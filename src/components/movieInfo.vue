@@ -8,8 +8,8 @@
         <i class="fas fa-times-circle removeInfo" ></i>
       </div>
 
-      <div class="col-6"><img :src="currentMovie.Poster" alt="" class="img"></div>
-      <div class="col-6">
+      <div class="col-12 col-sm-6" style="text-align:center;"><img :src="currentMovie.Poster" alt="" class="img" ></div>
+      <div class="col-12 col-sm-6">
         <h1 class="display-4">{{currentMovie.Title}}</h1>
         <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         <hr class="my-4">
@@ -61,9 +61,11 @@ export default {
 }
 </script>
 <style>
+
+
 .movieInfo {
   position: relative;
-  margin-top: 20px;
+  margin: 20px 5px;
   background-color: #191819;
   color:white;
   font-family: sans-serif;
@@ -72,6 +74,8 @@ export default {
 
 .movieInfo img{
   border-radius: 10px;
+  justify-content: flex-end;
+
 }
 
 .removeInfo{
@@ -81,10 +85,24 @@ export default {
   color:#636467;
   background-color: white;
   border-radius: 20px;
-  font-size: 2.5em;
+  font-size: 2.1em;
   z-index: 1;
+  transition: all .2s;
+
 }
 
+.removeInfo:hover{
+
+  animation: rotate 2s;
+}
+
+@keyframes rotate {
+  50%{transform: rotate(180deg);}
+  100%{
+    transform: rotate(180deg);
+    color: #d72c0e;}
+
+}
 .removeicon{
   position: relative;
   top:2px;

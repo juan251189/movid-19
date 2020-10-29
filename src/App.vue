@@ -17,7 +17,7 @@
             <button class="btn btn-secondary my-2 my-sm-0" type="submit" @click="formSubmitted">Search</button>
           </form>
           <li class="nav-item">
-            <a class="nav-link" href="#">MY FAVORITES <i class="far fa-heart"></i>
+            <a class="nav-link" href="#" @click="myfavourite=!myfavourite">MY FAVORITES <i class="far fa-heart"></i>
 
             </a>
           </li>
@@ -29,14 +29,21 @@
     </nav>
   </section>
 
+  <app-watchLater v-if="myfavourite" :watchLater="watchLater" :movieInfo="movieInfo"></app-watchLater>
 
-  <app-movie v-if="!isclicked" :movies="movies" @movieInfo="movieInfo"></app-movie>
-  <app-movieInfo v-else :watchLater="watchLater"
-   :currentMovie="currentMovie"
+  <section id="movies" v-if="!isclicked">
+    <div class="container-fluid">
+      <div class="row">
 
-  @addWatchLater="addWatchLat"
-  @removeWatchLater="removeWatchLat"
-  @isInfoclicked="isclicked=false"></app-movieInfo>
+        <app-movie class="col-md-3 col-sm-4 col-6" v-for="(movie,i) in movies" :key="i" :movie="movie" :movieInfo="movieInfo"></app-movie>
+
+
+      </div>
+
+    </div>
+  </section>
+
+  <app-movieInfo v-else :watchLater="watchLater" :currentMovie="currentMovie" @addWatchLater="addWatchLat" @removeWatchLater="removeWatchLat" @isInfoclicked="isclicked=false"></app-movieInfo>
 
 </div>
 </template>
@@ -45,6 +52,7 @@
 const API_url = 'http://www.omdbapi.com/?apikey=1468b66e&t=movie&s=';
 import Movie from './components/movie.vue'
 import MovieInfo from './components/movieInfo.vue'
+import WatchLater from './components/WatchLater.vue'
 export default {
 
   data() {
@@ -53,12 +61,14 @@ export default {
       movies: {},
       watchLater: [],
       currentMovie: {},
-      isclicked: false
+      isclicked: false,
+      myfavourite: false
     }
   },
   components: {
     appMovie: Movie,
-    appMovieInfo: MovieInfo
+    appMovieInfo: MovieInfo,
+    appWatchLater: WatchLater
   },
   methods: {
     formSubmitted(event) {
@@ -80,18 +90,18 @@ export default {
     },
     movieInfo(movie) {
       this.currentMovie = movie;
-      this.isclicked = true;
+      this.isclicked = !this.isclicked;
 
     },
     addWatchLat() {
       this.watchLater.push(this.currentMovie);
       console.log(this.watchLater);
     },
-    removeWatchLat(){
-      const index =this.watchLater.map(function(item){
+    removeWatchLat() {
+      const index = this.watchLater.map(function(item) {
         return item.imdbID;
       }).indexOf(this.currentMovie.imdbID);
-    this.watchLater.splice(index,1);
+      this.watchLater.splice(index, 1);
       console.log("are you sure ");
     }
   },
@@ -135,8 +145,9 @@ export default {
 }
 
 
-body{
-  background-color: #171717;
+body {
+  background-color: #191819;
   color: white;
+  overflow-x: hidden;
 }
 </style>
