@@ -2,13 +2,33 @@
 <template>
 <div id="app">
 
+
+<section id="header" class="mb-2">
+
+  <nav class="navbar navbar-dark bg-dark ">
+  <a class="navbar-brand">Movied-19 <i class="fas fa-ticket-alt"></i></a>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+    v-model="searchTerm">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+    @click="formSubmitted">Search</button>
+  </form>
+  <li class="nav-item">
+    <a class="nav-link" href="#" @click="myfavourite=!myfavourite">MY FAVORITES <i class="far fa-heart"></i>
+
+    </a>
+  </li>
+</nav>
+</section>
+
+<!--
   <section id="header">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
       <a class="navbar-brand" href="#">Movied-19</a>
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <!-- add class- tho the div below collapse navbar-toggleable-sm -->
+    // add class- tho the div below collapse navbar-toggleable-sm
       <div class="navbar " id="navbarColor02" style="">
         <ul class="navbar-nav mr-auto">
 
@@ -28,8 +48,8 @@
       </div>
     </nav>
   </section>
-
-  <app-watchLater v-if="myfavourite" :watchLater="watchLater" :movieInfo="movieInfo"></app-watchLater>
+-->
+  <app-watchLater v-if="myfavourite && !isclicked" :watchLater="watchLater" :movieInfo="movieInfo"></app-watchLater>
 
   <section id="movies" v-if="!isclicked">
     <div class="container-fluid">
@@ -81,7 +101,7 @@ export default {
           return response.json();
 
         }).then(data => {
-          console.log(data);
+
           this.setResults(data.Search)
         });
     },
@@ -114,43 +134,23 @@ export default {
 </script>
 
 <style>
-@media (max-width: 900px) {
-  .navbar-header {
-    float: none;
-  }
-
-  .navbar-toggle {
-    display: block;
-  }
-
-  .navbar-collapse {
-    border-top: 1px solid transparent;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  }
-
-  .navbar-collapse.collapse {
-    display: none !important;
-  }
-
-  .navbar-nav {
-    float: none !important;
-    margin: 7.5px -15px;
-  }
-
-  .navbar-nav>li {
-    float: none;
-  }
-
-  .navbar-nav>li>a {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-}
-
 
 body {
   background-color: #191819;
   color: white;
   overflow-x: hidden;
 }
+
+
+  .navbar{
+    height: 70px;
+    background-color: #0b0b0b!important;
+  }
+  .nav-item{
+    list-style-type: none;
+    color: white;
+  }
+  .nav-item>a{
+    color: #c8c8c8;
+  }
 </style>

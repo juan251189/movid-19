@@ -1,9 +1,7 @@
 <template>
 
     <section id="watchlater">
-      <h1>
-        My favourites1
-      </h1>
+
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-3 col-sm-4" v-for="(movie,i) in watchLater" :key="i">
@@ -12,6 +10,7 @@
           </div>
         </div>
       </div>
+      <hr>
     </section>
 
 

@@ -8,7 +8,7 @@
       <img :src="movie.Poster" class=" img img-thumbnail" alt="" @click="movieInfo(movie)">
 
     </div>
-      <p class="mt-2">{{movie.Title}}</p>
+      <p class="mt-2 movie-title">{{movie.Title}}</p>
 
   </div>
 
@@ -48,6 +48,10 @@ export default {
   border-radius: 10px;
   box-shadow:1px 15px rgb(17, 17, 16);
 
+}
+
+.movie-poster .movie-title{
+  z-index: 1;
 }
 
 .movie-poster
