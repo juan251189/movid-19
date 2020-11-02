@@ -1,7 +1,7 @@
 
 
 <template>
-<div id="movie">
+<div class="movie">
 
 
     <div class="movie-poster">
@@ -27,16 +27,16 @@ export default {
 <style>
 
 
-#movie{
+.movie{
   margin-top: 15px;
   transition: all .5;
 }
-#movie :hover{
+.movie :hover{
   opacity: 0.6;
 
 }
 
-#movie p{
+.movie p{
   text-align: center;
   z-index: 2;
 

@@ -6,7 +6,7 @@
 <section id="header" class="mb-2">
 
   <nav class="navbar navbar-dark bg-dark ">
-  <a class="navbar-brand">Movied-19 <i class="fas fa-ticket-alt"></i></a>
+  <a class="navbar-brand" @click="movies={}">Movied-19 <i class="fas fa-ticket-alt" ></i></a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
     v-model="searchTerm">
@@ -14,12 +14,16 @@
     @click="formSubmitted">Search</button>
   </form>
   <li class="nav-item">
-    <a class="nav-link" href="#" @click="myfavourite=!myfavourite">MY FAVORITES <i class="far fa-heart"></i>
+    <a class="nav-link" href="#" @click="myfavourite=!myfavourite"
+      :style="[myfavourite ? {color:'#ccc051',boxShadow:'1px 1px 3px rgb(215, 198, 43,0.7)'} : '']">MY FAVORITES <i class="far fa-heart"></i>
 
     </a>
   </li>
 </nav>
 </section>
+
+
+
 
 <!--
   <section id="header">
@@ -49,9 +53,15 @@
     </nav>
   </section>
 -->
-  <app-watchLater v-if="myfavourite && !isclicked" :watchLater="watchLater" :movieInfo="movieInfo"></app-watchLater>
+  <app-watchLater v-if="myfavourite && !isclicked"
 
-  <section id="movies" v-if="!isclicked">
+  :watchLater="watchLater"
+
+  :movieInfo="movieInfo"
+
+  ></app-watchLater>
+
+  <section id="movies" v-if="!isclicked && !myfavourite">
     <div class="container-fluid">
       <div class="row">
 
@@ -63,7 +73,10 @@
     </div>
   </section>
 
-  <app-movieInfo v-else :watchLater="watchLater" :currentMovie="currentMovie" @addWatchLater="addWatchLat" @removeWatchLater="removeWatchLat" @isInfoclicked="isclicked=false"></app-movieInfo>
+  <app-movieInfo v-if="isclicked " :watchLater="watchLater"
+  :currentMovie="currentMovie"
+  @addWatchLater="addWatchLat" @removeWatchLater="removeWatchLat"
+  @isInfoclicked="isclicked=false"></app-movieInfo>
 
 </div>
 </template>
@@ -136,14 +149,14 @@ export default {
 <style>
 
 body {
-  background-color: #191819;
+  background-color:#131313;
   color: white;
   overflow-x: hidden;
 }
 
 
   .navbar{
-    height: 70px;
+    min-height: 70px;
     background-color: #0b0b0b!important;
   }
   .nav-item{
@@ -153,4 +166,19 @@ body {
   .nav-item>a{
     color: #c8c8c8;
   }
+
+  @media only screen and (max-width: 500px) {
+.navbar{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#header .navbar-brand{
+  margin-bottom: 15px;
+  font-size: 2.5rem;
+}
+
+}
 </style>
