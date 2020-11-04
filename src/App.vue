@@ -9,7 +9,7 @@
   <a class="navbar-brand" @click="movies={}">Movied-19 <i class="fas fa-ticket-alt" ></i></a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-    v-model="searchTerm">
+    v-model="searchTerm" id="input-search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
     @click="formSubmitted">Search</button>
   </form>
@@ -53,6 +53,9 @@
     </nav>
   </section>
 -->
+<transition name="fade">
+  <p class="alert alert-danger error" v-if="error">{{error}}</p>
+</transition>
   <app-watchLater v-if="myfavourite && !isclicked"
 
   :watchLater="watchLater"
@@ -95,7 +98,8 @@ export default {
       watchLater: [],
       currentMovie: {},
       isclicked: false,
-      myfavourite: false
+      myfavourite: false,
+      error:''
     }
   },
   components: {
@@ -108,14 +112,21 @@ export default {
       event.preventDefault();
       let url = `${API_url}${this.searchTerm}`;
 
+
       fetch(url)
         .then(response => {
 
           return response.json();
 
         }).then(data => {
+          if(data.Error){
+            this.error=data.Error;
+            this.movies={};
 
-          this.setResults(data.Search)
+          }else {
+            this.setResults(data.Search);
+            this.error='';
+           }
         });
     },
 
@@ -167,6 +178,22 @@ body {
     color: #c8c8c8;
   }
 
+  .fade-enter{
+    opacity: 0;
+  }
+
+  .fade-enter-active{
+    transition: opacity 2s;
+  }
+
+  .fade-leave{
+
+  }
+
+  .fade-leave-active{
+    transition: opacity 0.5s;
+    opacity: 0;
+  }
   @media only screen and (max-width: 500px) {
 .navbar{
   display:flex;
